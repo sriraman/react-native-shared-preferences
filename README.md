@@ -24,8 +24,7 @@ project(':react-native-shared-preferences').projectDir = new File(rootProject.pr
 ```gradle
 ...
 dependencies {
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    /* YOUR DEPENDENCIES HERE */
     compile "com.facebook.react:react-native:0.18.+"
     compile project(":react-native-shared-preferences") // <--- add this
 }
