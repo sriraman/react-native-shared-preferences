@@ -75,3 +75,8 @@ SharedPreferences.getItem("key", function(value){
   console.log(value);
 });
 ```
+
+
+## Credits
+
+[Sujith Niraikulathan](http://bit.ly/sujithkanna "Sujith").
