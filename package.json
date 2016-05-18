@@ -15,7 +15,9 @@
     "Native",
     "Shared",
     "Preference",
-    "Android"
+    "Android",
+    "react-component",
+    "react-native"
   ],
   "author": "Sriraman",
   "license": "ISC",
