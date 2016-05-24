@@ -75,6 +75,12 @@ SharedPreferences.getItem("key", function(value){
 });
 ```
 
+#### Clear all values
+
+```javascript
+SharedPreferences.clear();
+```
+
 
 ## Credits
 
