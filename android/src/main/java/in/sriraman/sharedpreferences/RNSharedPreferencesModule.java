@@ -97,7 +97,28 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
     }
 
+/*
 
+	@ReactMethod
+	public void multiGet(String[] keys, Callback successCallback){
+
+		SharedHandler.init(getReactApplicationContext());
+		String[][] value = SharedDataProvider.getMultiSharedValues(keys);
+		successCallback.invoke(value);
+
+	}	
+
+	
+	@ReactMethod
+	public void getAllKeys(Callback successCallback){
+
+		SharedHandler.init(getReactApplicationContext());
+		Object value = SharedDataProvider.getAllKeys();
+		successCallback.invoke(value.toString());
+
+	}	
+
+*/
 
     @ReactMethod
     public void clear(){

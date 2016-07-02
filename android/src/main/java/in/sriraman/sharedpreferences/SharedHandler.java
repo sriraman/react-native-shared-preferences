@@ -3,9 +3,11 @@ package in.sriraman.sharedpreferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Map;
+
 public class SharedHandler {
 
-    private static final String SHARED_NAME = "shared_preferences";
+    private static final String SHARED_NAME = "wit_player_shared_preferences";
 
     private SharedPreferences mSharedPreferences;
 
@@ -60,6 +62,10 @@ public class SharedHandler {
 
     public void clear() {
         mSharedPreferences.edit().clear().commit();
+    }
+
+    public Map<String, ?> getAllSharedData(){
+        return mSharedPreferences.getAll();
     }
 
 }
