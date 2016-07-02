@@ -1,6 +1,6 @@
 {
   "name": "react-native-shared-preferences",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Android's Native key value storage system in React Native",
   "main": "index.js",
   "scripts": {
