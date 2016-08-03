@@ -34,7 +34,7 @@ dependencies {
 * Register Module (in MainActivity.java)
 
 ```java
-import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;;  // <--- import
+import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;  // <--- import
 
 public class MainActivity extends ReactActivity {
   ......
