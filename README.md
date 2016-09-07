@@ -25,7 +25,7 @@ project(':react-native-shared-preferences').projectDir = new File(rootProject.pr
 ...
 dependencies {
     /* YOUR DEPENDENCIES HERE */
-    compile "com.facebook.react:react-native:0.18.+"
+    compile "com.facebook.react:react-native:+"
     compile project(":react-native-shared-preferences") // <--- add this
 }
 
@@ -72,6 +72,22 @@ SharedPreferences.setItem("key","value");
 ```javascript
 SharedPreferences.getItem("key", function(value){
   console.log(value);
+});
+```
+
+#### Get multiple items
+
+```javascript
+SharedPreferences.items(["key1","key2"], function(values){
+  console.log(values)
+});
+```
+
+#### Get all values
+
+```javascript
+SharedPreferences.getAll(function(values){
+  console.log(values);
 });
 ```
 
