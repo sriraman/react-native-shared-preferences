@@ -39,6 +39,14 @@ class example extends Component {
 		SharedPreferences.getItem(this.state.keyToGet, function(value){
 			ToastAndroid.show(value,ToastAndroid.SHORT);
 		})
+
+		SharedPreferences.getItems([this.state.keyToGet], function(value){
+			console.log(value);
+		})
+
+		SharedPreferences.getAll(function(value){
+			console.log(value);
+		})
 	}
 
 	// TODO : Function to get all the shared preferences

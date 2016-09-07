@@ -51,3 +51,5 @@ captures/
 
 # For Mac
 .DS_STORE
+
+*.swp

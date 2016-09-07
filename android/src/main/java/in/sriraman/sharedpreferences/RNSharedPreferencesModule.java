@@ -9,6 +9,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.*;
 
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.common.MapBuilder;
@@ -97,8 +98,38 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
     }
 
-/*
 
+		/***
+     * getItems(): returns Native Array of Preferences for the given values
+     * */
+    @ReactMethod
+    public void getItems(ReadableArray keys, Callback successCallback){
+        String[] keysArray= new String[keys.size()];
+        for (int i=0;i<keys.size();i++){
+            keysArray[i]=keys.getString(i);
+        }
+        String[] [] values = SharedDataProvider.getMultiSharedValues(keysArray);
+        WritableNativeArray data = new WritableNativeArray();
+        for(int i=0;i<keys.size();i++){
+            data.pushString(values[i][1]);
+        }
+      	successCallback.invoke(data);
+    }
+
+		@ReactMethod
+		public void getAll(Callback successCallback){
+			String[][] values = SharedDataProvider.getAllSharedValues();
+			WritableNativeArray data = new WritableNativeArray();
+			for(int i=0; i<values.length; i++){
+				WritableArray arr = new WritableNativeArray();
+				arr.pushString(values[i][0]);
+				arr.pushString(values[i][1]);
+				data.pushArray(arr);
+			}
+			successCallback.invoke(data);
+		}
+		
+/*
 	@ReactMethod
 	public void multiGet(String[] keys, Callback successCallback){
 
@@ -108,7 +139,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	}	
 
-	
+
 	@ReactMethod
 	public void getAllKeys(Callback successCallback){
 
