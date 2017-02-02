@@ -68,4 +68,10 @@ public class SharedHandler {
         return mSharedPreferences.getAll();
     }
 
+    public void deleteKey(String key) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.remove(key);
+        editor.commit();
+    }
+
 }

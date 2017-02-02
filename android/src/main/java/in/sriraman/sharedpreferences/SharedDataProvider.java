@@ -72,4 +72,8 @@ public class SharedDataProvider {
         SharedHandler.getInstance().clear();
     }
 
+    public static void deleteSharedValue(String key) {
+        SharedHandler.getInstance().deleteKey(key);
+    }
+
 }

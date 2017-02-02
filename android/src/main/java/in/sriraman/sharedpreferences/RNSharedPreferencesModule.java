@@ -143,11 +143,8 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	@ReactMethod
 	public void getAllKeys(Callback successCallback){
-
 		SharedHandler.init(getReactApplicationContext());
-		Object value = SharedDataProvider.getAllKeys();
-		successCallback.invoke(value.toString());
-
+		successCallback.invoke(SharedDataProvider.getAllKeys());
 	}	
 
 
@@ -159,6 +156,11 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
     }
 
 
+    @ReactMethod
+    public void removeItem(String key) {
+      SharedHandler.init(getReactApplicationContext());
+      SharedDataProvider.deleteSharedValue(key);
+    }
 
 
 }
