@@ -139,6 +139,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	}	
 
+*/
 
 	@ReactMethod
 	public void getAllKeys(Callback successCallback){
@@ -149,7 +150,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	}	
 
-*/
+
 
     @ReactMethod
     public void clear(){

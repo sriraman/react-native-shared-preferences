@@ -47,6 +47,7 @@ public class SharedDataProvider {
         }
         return results;
     }
+    */
 
     public static String[][] getAllKeys() {
         Map<String, ?> keyValues = SharedHandler.getInstance().getAllSharedData();
@@ -57,7 +58,7 @@ public class SharedDataProvider {
             results[i][1] = String.valueOf(keyValues.get(keys.get(i)));
         }
         return results;
-    }*/
+    }
 
     public static String getSharedValue(String key) {
         return SharedHandler.getInstance().getString(key);
