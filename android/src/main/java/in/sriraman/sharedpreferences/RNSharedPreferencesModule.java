@@ -144,7 +144,8 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 	@ReactMethod
 	public void getAllKeys(Callback successCallback){
 		SharedHandler.init(getReactApplicationContext());
-		successCallback.invoke(SharedDataProvider.getAllKeys());
+		Object value = SharedDataProvider.getAllKeys();
+        successCallback.invoke(value.toString());
 	}	
 
 

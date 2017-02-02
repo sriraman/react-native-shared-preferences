@@ -100,15 +100,17 @@ SharedPreferences.clear();
 
 #### Get all keys - returns promise with array of keys
 ```javascript
-SharedPreferences.getAllKeys().then(function(keys){
-  console.log(keys)
+SharedPreferences.getAllKeys(function(keys){
+  console.log(keys);
 });
 ```
 
 #### Remove Item
 
 ```javascript
-SharedPreferences.removeItem("key");
+SharedPreferences.removeItem("key",function(value){
+  console.log(value);
+});
 ```
 
 ## Credits
