@@ -49,13 +49,12 @@ public class SharedDataProvider {
     }
     */
 
-    public static String[][] getAllKeys() {
+    public static String[] getAllKeys() {
         Map<String, ?> keyValues = SharedHandler.getInstance().getAllSharedData();
         List<String> keys = new ArrayList<>(keyValues.keySet());
-        String[][] results = new String[keys.size()][2];
+        String[] results = new String[keys.size()];
         for (int i = 0; i < keys.size(); i++) {
-            results[i][0] = keys.get(i);
-            results[i][1] = String.valueOf(keyValues.get(keys.get(i)));
+            results[i] = keys.get(i);
         }
         return results;
     }

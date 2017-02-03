@@ -142,11 +142,15 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 */
 
 	@ReactMethod
-	public void getAllKeys(Callback successCallback){
-		SharedHandler.init(getReactApplicationContext());
-		Object value = SharedDataProvider.getAllKeys();
-        successCallback.invoke(value.toString());
-	}	
+    public void getAllKeys(Callback successCallback){
+        SharedHandler.init(getReactApplicationContext());
+        String[] keys = SharedDataProvider.getAllKeys();
+        WritableNativeArray data = new WritableNativeArray();
+        for(int i=0; i<keys.length; i++){
+            data.pushString(keys[i]);
+        }
+        successCallback.invoke(data);
+    }
 
 
 
