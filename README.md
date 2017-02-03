@@ -96,7 +96,6 @@ SharedPreferences.getAll(function(values){
 ```javascript
 SharedPreferences.clear();
 ```
-#### Get multiple items
 
 #### Get all keys - returns promise with array of keys
 ```javascript
