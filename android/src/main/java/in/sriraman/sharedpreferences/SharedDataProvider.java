@@ -47,17 +47,17 @@ public class SharedDataProvider {
         }
         return results;
     }
+    */
 
-    public static String[][] getAllKeys() {
+    public static String[] getAllKeys() {
         Map<String, ?> keyValues = SharedHandler.getInstance().getAllSharedData();
         List<String> keys = new ArrayList<>(keyValues.keySet());
-        String[][] results = new String[keys.size()][2];
+        String[] results = new String[keys.size()];
         for (int i = 0; i < keys.size(); i++) {
-            results[i][0] = keys.get(i);
-            results[i][1] = String.valueOf(keyValues.get(keys.get(i)));
+            results[i] = keys.get(i);
         }
         return results;
-    }*/
+    }
 
     public static String getSharedValue(String key) {
         return SharedHandler.getInstance().getString(key);
@@ -69,6 +69,10 @@ public class SharedDataProvider {
 
     public static void clear() {
         SharedHandler.getInstance().clear();
+    }
+
+    public static void deleteSharedValue(String key) {
+        SharedHandler.getInstance().deleteKey(key);
     }
 
 }

@@ -31,7 +31,7 @@ dependencies {
 
 ```
 
-* Register Module (in MainActivity.java)
+* Register Module (in MainApplication.java)
 
 ```java
 import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;  // <--- import
@@ -97,6 +97,20 @@ SharedPreferences.getAll(function(values){
 SharedPreferences.clear();
 ```
 
+#### Get all keys - returns promise with array of keys
+```javascript
+SharedPreferences.getAllKeys(function(keys){
+  console.log(keys);
+});
+```
+
+#### Remove Item
+
+```javascript
+SharedPreferences.removeItem("key",function(value){
+  console.log(value);
+});
+```
 
 ## Credits
 

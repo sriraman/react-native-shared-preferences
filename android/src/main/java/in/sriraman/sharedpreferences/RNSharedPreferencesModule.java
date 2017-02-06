@@ -139,17 +139,20 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	}	
 
+*/
 
 	@ReactMethod
-	public void getAllKeys(Callback successCallback){
+    public void getAllKeys(Callback successCallback){
+        SharedHandler.init(getReactApplicationContext());
+        String[] keys = SharedDataProvider.getAllKeys();
+        WritableNativeArray data = new WritableNativeArray();
+        for(int i=0; i<keys.length; i++){
+            data.pushString(keys[i]);
+        }
+        successCallback.invoke(data);
+    }
 
-		SharedHandler.init(getReactApplicationContext());
-		Object value = SharedDataProvider.getAllKeys();
-		successCallback.invoke(value.toString());
 
-	}	
-
-*/
 
     @ReactMethod
     public void clear(){
@@ -158,6 +161,12 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
     }
 
 
+    @ReactMethod
+    public void removeItem(String key, Callback successCallback) {
+      SharedHandler.init(getReactApplicationContext());
+      SharedDataProvider.deleteSharedValue(key);
+      successCallback.invoke(key);
+    }
 
 
 }
