@@ -162,10 +162,9 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-    public void removeItem(String key, Callback successCallback) {
+    public void removeItem(String key) {
       SharedHandler.init(getReactApplicationContext());
       SharedDataProvider.deleteSharedValue(key);
-      successCallback.invoke(key);
     }
 
 

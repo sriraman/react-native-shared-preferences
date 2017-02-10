@@ -107,9 +107,7 @@ SharedPreferences.getAllKeys(function(keys){
 #### Remove Item
 
 ```javascript
-SharedPreferences.removeItem("key",function(value){
-  console.log(value);
-});
+SharedPreferences.removeItem("key");
 ```
 
 ## Credits
