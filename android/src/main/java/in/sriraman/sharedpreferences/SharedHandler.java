@@ -22,7 +22,9 @@ public class SharedHandler {
     }
 
     public static void init(Context context) {
-        sSharedHandler = new SharedHandler(context);
+	if (sSharedHandler==null) {
+            sSharedHandler = new SharedHandler(context);
+	}
     }
 
     public void putExtra(String key, Object value) {
