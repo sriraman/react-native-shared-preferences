@@ -50,74 +50,76 @@ import java.util.Set;
 public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 
-    final int BT_ACTION_REQUEST_ENABLE = 1;
+	final int BT_ACTION_REQUEST_ENABLE = 1;
 
-    private BluetoothAdapter bt_adapter = null;
-    private ListView bt_list_view;
-    private ArrayList<BluetoothDevice> bt_device_list = null;
-    private boolean bt_scanning = false;
-    private boolean is_watch = false;
+	private BluetoothAdapter bt_adapter = null;
+	private ListView bt_list_view;
+	private ArrayList<BluetoothDevice> bt_device_list = null;
+	private boolean bt_scanning = false;
+	private boolean is_watch = false;
 
-    private BroadcastReceiver bt_info_receiver = null;
-
-
-
-
-    public void onCreate(Bundle savedInstanceState) {
-
-
-    }
+	private BroadcastReceiver bt_info_receiver = null;
 
 
 
 
-    public RNSharedPreferencesModule(ReactApplicationContext reactContext) {
-        super(reactContext);
-    }
-
-    @Override
-    public String getName() {
-        return "SharedPreferences";
-    }
+	public void onCreate(Bundle savedInstanceState) {
 
 
-    @ReactMethod
-    public void setItem(String key, String value) {
-
-        SharedHandler.init(getReactApplicationContext());
-        SharedDataProvider.putSharedValue(key,value);
-
-    }
-
-    @ReactMethod
-    public void getItem(String key, Callback successCallback){
-
-      SharedHandler.init(getReactApplicationContext());
-      String value = SharedDataProvider.getSharedValue(key);
-      successCallback.invoke(value);
-
-    }
+	}
 
 
-		/***
-     * getItems(): returns Native Array of Preferences for the given values
-     * */
-    @ReactMethod
-    public void getItems(ReadableArray keys, Callback successCallback){
-        String[] keysArray= new String[keys.size()];
-        for (int i=0;i<keys.size();i++){
-            keysArray[i]=keys.getString(i);
-        }
-        String[] [] values = SharedDataProvider.getMultiSharedValues(keysArray);
-        WritableNativeArray data = new WritableNativeArray();
-        for(int i=0;i<keys.size();i++){
-            data.pushString(values[i][1]);
-        }
-      	successCallback.invoke(data);
-    }
 
-		@ReactMethod
+
+	public RNSharedPreferencesModule(ReactApplicationContext reactContext) {
+		super(reactContext);
+	}
+
+	@Override
+		public String getName() {
+			return "SharedPreferences";
+		}
+
+
+	@ReactMethod
+		public void setItem(String key, String value) {
+
+			SharedHandler.init(getReactApplicationContext());
+			SharedDataProvider.putSharedValue(key,value);
+
+		}
+
+	@ReactMethod
+		public void getItem(String key, Callback successCallback){
+
+			SharedHandler.init(getReactApplicationContext());
+			String value = SharedDataProvider.getSharedValue(key);
+			successCallback.invoke(value);
+
+		}
+
+
+	/***
+	 * getItems(): returns Native Array of Preferences for the given values
+	 * */
+	@ReactMethod
+		    public void getItems(ReadableArray keys, Callback successCallback){
+			    SharedHandler.init(getReactApplicationContext());
+			    String[] keysArray= new String[keys.size()];
+			    for (int i=0;i<keys.size();i++){
+				    keysArray[i]=keys.getString(i);
+			    }
+			    String[] [] values = SharedDataProvider.getMultiSharedValues(keysArray);
+			    WritableNativeArray data = new WritableNativeArray();
+			    for(int i=0;i<keys.size();i++){
+				    data.pushString(values[i][1]);
+			    }
+			    successCallback.invoke(data);
+		    }
+
+	@ReactMethod
 		public void getAll(Callback successCallback){
+			SharedHandler.init(getReactApplicationContext());
 			String[][] values = SharedDataProvider.getAllSharedValues();
 			WritableNativeArray data = new WritableNativeArray();
 			for(int i=0; i<values.length; i++){
@@ -128,44 +130,44 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 			}
 			successCallback.invoke(data);
 		}
-		
-/*
+
+	/*
+	   @ReactMethod
+	   public void multiGet(String[] keys, Callback successCallback){
+
+	   SharedHandler.init(getReactApplicationContext());
+	   String[][] value = SharedDataProvider.getMultiSharedValues(keys);
+	   successCallback.invoke(value);
+
+	   }	
+
+	 */
+
 	@ReactMethod
-	public void multiGet(String[] keys, Callback successCallback){
+		public void getAllKeys(Callback successCallback){
+			SharedHandler.init(getReactApplicationContext());
+			String[] keys = SharedDataProvider.getAllKeys();
+			WritableNativeArray data = new WritableNativeArray();
+			for(int i=0; i<keys.length; i++){
+				data.pushString(keys[i]);
+			}
+			successCallback.invoke(data);
+		}
 
-		SharedHandler.init(getReactApplicationContext());
-		String[][] value = SharedDataProvider.getMultiSharedValues(keys);
-		successCallback.invoke(value);
 
-	}	
-
-*/
 
 	@ReactMethod
-    public void getAllKeys(Callback successCallback){
-        SharedHandler.init(getReactApplicationContext());
-        String[] keys = SharedDataProvider.getAllKeys();
-        WritableNativeArray data = new WritableNativeArray();
-        for(int i=0; i<keys.length; i++){
-            data.pushString(keys[i]);
-        }
-        successCallback.invoke(data);
-    }
+		public void clear(){
+			SharedHandler.init(getReactApplicationContext());
+			SharedDataProvider.clear();
+		}
 
 
-
-    @ReactMethod
-    public void clear(){
-      SharedHandler.init(getReactApplicationContext());
-      SharedDataProvider.clear();
-    }
-
-
-    @ReactMethod
-    public void removeItem(String key) {
-      SharedHandler.init(getReactApplicationContext());
-      SharedDataProvider.deleteSharedValue(key);
-    }
+	@ReactMethod
+		public void removeItem(String key) {
+			SharedHandler.init(getReactApplicationContext());
+			SharedDataProvider.deleteSharedValue(key);
+		}
 
 
 }
