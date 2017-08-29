@@ -4,6 +4,12 @@ Android's Native key value storage system in React Native
 
 ## Installation
 
+### < RN 0.47
+```bash
+npm install react-native-shared-preferences@0.0.8 --save
+```
+
+### >= RN 0.47
 ```bash
 npm install react-native-shared-preferences --save
 ```
