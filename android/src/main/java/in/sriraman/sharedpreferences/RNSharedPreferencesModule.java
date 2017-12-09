@@ -57,6 +57,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 	private ArrayList<BluetoothDevice> bt_device_list = null;
 	private boolean bt_scanning = false;
 	private boolean is_watch = false;
+	private String shared_name = "wit_player_shared_preferences";
 
 	private BroadcastReceiver bt_info_receiver = null;
 
@@ -69,22 +70,29 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 	}
 
 
-
+	private void initSharedHandler() {
+		SharedHandler.init(getReactApplicationContext(), shared_name);		
+	}
 
 	public RNSharedPreferencesModule(ReactApplicationContext reactContext) {
 		super(reactContext);
 	}
 
 	@Override
-		public String getName() {
-			return "SharedPreferences";
-		}
+	public String getName() {
+		return "SharedPreferences";
+	}
+
+	@ReactMethod
+	public void setName(String name) {
+		shared_name = name;
+	}
 
 
 	@ReactMethod
 		public void setItem(String key, String value) {
 
-			SharedHandler.init(getReactApplicationContext());
+			initSharedHandler();
 			SharedDataProvider.putSharedValue(key,value);
 
 		}
@@ -92,7 +100,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 	@ReactMethod
 		public void getItem(String key, Callback successCallback){
 
-			SharedHandler.init(getReactApplicationContext());
+			initSharedHandler();
 			String value = SharedDataProvider.getSharedValue(key);
 			successCallback.invoke(value);
 
@@ -104,7 +112,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 	 * */
 	@ReactMethod
 		    public void getItems(ReadableArray keys, Callback successCallback){
-			    SharedHandler.init(getReactApplicationContext());
+			    initSharedHandler();
 			    String[] keysArray= new String[keys.size()];
 			    for (int i=0;i<keys.size();i++){
 				    keysArray[i]=keys.getString(i);
@@ -119,7 +127,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	@ReactMethod
 		public void getAll(Callback successCallback){
-			SharedHandler.init(getReactApplicationContext());
+			initSharedHandler();
 			String[][] values = SharedDataProvider.getAllSharedValues();
 			WritableNativeArray data = new WritableNativeArray();
 			for(int i=0; i<values.length; i++){
@@ -145,7 +153,7 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	@ReactMethod
 		public void getAllKeys(Callback successCallback){
-			SharedHandler.init(getReactApplicationContext());
+			initSharedHandler();
 			String[] keys = SharedDataProvider.getAllKeys();
 			WritableNativeArray data = new WritableNativeArray();
 			for(int i=0; i<keys.length; i++){
@@ -158,14 +166,14 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	@ReactMethod
 		public void clear(){
-			SharedHandler.init(getReactApplicationContext());
+			initSharedHandler();
 			SharedDataProvider.clear();
 		}
 
 
 	@ReactMethod
 		public void removeItem(String key) {
-			SharedHandler.init(getReactApplicationContext());
+			initSharedHandler();
 			SharedDataProvider.deleteSharedValue(key);
 		}
 
