@@ -5,7 +5,7 @@ Android's Native key value storage system in React Native
 ## Installation
 
 ```bash
-npm install @connected-home/react-native-android-shared-preferences--save
+npm install @connected-home/react-native-android-shared-preferences --save
 ```
 
 ## Project setup and initialization
@@ -98,11 +98,11 @@ SharedPreferences.entries("file", function(values) {
 #### Remove Item
 
 ```javascript
-SharedPreferences.deleteItem("key");
+SharedPreferences.deleteItem("file", "key");
 ```
 
 #### Clear all values
 
 ```javascript
-SharedPreferences.clear();
+SharedPreferences.clear("file");
 ```
