@@ -1,6 +1,6 @@
 {
-  "name": "react-native-shared-preferences",
-  "version": "1.0.0",
+  "name": "@connected-home/react-native-android-shared-preferences",
+  "version": "2.0.0",
   "description": "Android's Native key value storage system in React Native",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/sriraman/react-native-shared-preferences.git"
+    "url": "git+ssh://git@github.com/ConnectedHomes/react-native-android-shared-preferences.git"
   },
   "keywords": [
     "React",
@@ -19,10 +19,9 @@
     "react-component",
     "react-native"
   ],
-  "author": "Sriraman",
-  "license": "ISC",
+  "author": "ConnectedHomes",
   "bugs": {
-    "url": "https://github.com/sriraman/react-native-shared-preferences/issues"
+    "url": "https://github.com/ConnectedHomes/react-native-android-shared-preferences/issues"
   },
-  "homepage": "https://github.com/sriraman/react-native-shared-preferences#readme"
+  "homepage": "https://github.com/ConnectedHomes/react-native-android-shared-preferences#readme"
 }

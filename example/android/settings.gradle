@@ -1,6 +1,0 @@
-rootProject.name = 'example'
-
-include ':app'
-
-include ':react-native-shared-preferences', ':app'
-project(':react-native-shared-preferences').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-shared-preferences/android')
