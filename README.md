@@ -57,13 +57,7 @@ public class MainActivity extends ReactActivity {
 const SharedPreferences = require("react-native-android-shared-preferences");
 ```
 
-#### Set Item
-
-```javascript
-SharedPreferences.setItem("file", "key", "value");
-```
-
-#### Get an value
+#### Get an item
 
 ```javascript
 SharedPreferences.getItem("file", "key", function(value) {
@@ -87,7 +81,7 @@ SharedPreferences.keys("file", function(keys) {
 });
 ```
 
-#### Get all values
+#### Get all entries = returns a promise with an array of key/value tuples
 
 ```javascript
 SharedPreferences.entries("file", function(values) {
@@ -95,13 +89,19 @@ SharedPreferences.entries("file", function(values) {
 });
 ```
 
-#### Remove Item
+#### Set Item
+
+```javascript
+SharedPreferences.setItem("file", "key", "value");
+```
+
+#### Delete Item
 
 ```javascript
 SharedPreferences.deleteItem("file", "key");
 ```
 
-#### Clear all values
+#### Clear all items
 
 ```javascript
 SharedPreferences.clear("file");
