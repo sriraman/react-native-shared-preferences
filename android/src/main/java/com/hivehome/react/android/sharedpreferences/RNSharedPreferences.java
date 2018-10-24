@@ -2,69 +2,50 @@ package com.hivehome.react.android.sharedpreferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import java.util.Map;
 
 public class RNSharedPreferences {
 
-    private SharedPreferences mSharedPreferences;
+    private SharedPreferences sharedPreferences;
 
     public SharedHandler(Context context, String name) {
-        mSharedPreferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
-    public String getItemString(String key) {
-        return mSharedPreferences.getString(key, null);
+    public String getItem(String key) {
+        return sharedPreferences.getItem(key, null);
     }
 
-    public Float getItemFloat(String key) {
-        return mSharedPreferences.getFloat(key, 0f);
-    }
-
-    public Long getItemLong(String key) {
-        return mSharedPreferences.getLong(key, 0);
-    }
-
-    public Boolean getItemBoolean(String key) {
-        return mSharedPreferences.getBoolean(key, false);
-    }
-
-    public Integer getItemInt(String key) {
-        return mSharedPreferences.getInt(key, 0);
-    }
-
-    public String[][] getItems(String[] keys) {
-        String[][] results = new String[keys.length][2];
+    public String[] getItems(String[] keys) {
+        String[] results = new String[keys.length];
         for (int i = 0; i < keys.length; i++) {
-            results[i][0] = keys[i];
-            results[i][1] = String.valueOf(getString(keys[i]));
+            results[i] = getItem(keys[i]);
         }
         return results;
     }
 
     public String[] keys() {
-        Map<String, ?> keyValues = mSharedPreferences.getAll();
-        List<String> keys = new ArrayList<>(keyValues.keySet());
-        String[] results = new String[keys.size()];
-        for (int i = 0; i < keys.size(); i++) {
-            results[i] = keys.get(i);
-        }
-        return results;
+        Map<String, ?> all = sharedPreferences.getAll();
+        Set<String> keySet = all.keySet();
+        String[] keys = keySet.toArray(new String[keySet.size()]);
+        return keys;
     }
 
     public String[][] entries() {
-        Map<String, ?> keyValues = mSharedPreferences.getAll();
-        List<String> keys = new ArrayList<>(keyValues.keySet());
-        String[][] results = new String[keys.size()][2];
-        for (int i = 0; i < keys.size(); i++) {
-            results[i][0] = keys.get(i);
-            results[i][1] = String.valueOf(keyValues.get(keys.get(i)));
+        Map<String, ?> all = sharedPreferences.getAll();
+        Set<Entry<String, ?>> entrySet = all.entrySet();
+
+        String[][] entries = new String[entrySet.size()][2];
+        for (int i = 0; i < entrySet.size(); i++) {
+            entries[i][0] = entrySet[i].getKey();
+            entries[i][1] = String.valueOf(entrySet[i].getValue());
         }
-        return results;
+
+        return entries;
     }
 
     public void setItem(String key, Object value) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         if (value instanceof String) {
             editor.putString(key, (String) value).commit();
         } else if (value instanceof Boolean) {
@@ -79,11 +60,11 @@ public class RNSharedPreferences {
     }
 
     public void deleteItem(String key) {
-        mSharedPreferences.edit().remove(key).commit();
+        sharedPreferences.edit().remove(key).commit();
     }
 
     public void clear() {
-        mSharedPreferences.edit().clear().commit();
+        sharedPreferences.edit().clear().commit();
     }
 
 }
