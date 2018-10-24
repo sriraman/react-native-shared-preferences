@@ -1,11 +1,8 @@
 {
   "name": "@connected-home/react-native-android-shared-preferences",
-  "version": "2.0.0",
-  "description": "Android's Native key value storage system in React Native",
+  "version": "1.0.0",
+  "description": "Android Shared Preferences for React Native",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/ConnectedHomes/react-native-android-shared-preferences.git"
