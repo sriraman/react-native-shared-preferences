@@ -1,6 +1,7 @@
 {
   "name": "@connected-home/react-native-android-shared-preferences",
   "version": "1.0.0",
+  "author": "Peter Bevan<peter.bevan@hivehome.com>",
   "description": "Android Shared Preferences for React Native",
   "main": "index.js",
   "repository": {
@@ -10,13 +11,12 @@
   "keywords": [
     "React",
     "Native",
+    "SharedPreferences",
     "Shared",
-    "Preference",
+    "Preferences",
     "Android",
-    "react-component",
     "react-native"
   ],
-  "author": "ConnectedHomes",
   "bugs": {
     "url": "https://github.com/ConnectedHomes/react-native-android-shared-preferences/issues"
   },
