@@ -1,16 +1,18 @@
-# React Native Shared Preferences
+# React Native Android Shared Preferences
 
-Android's Native key value storage system in React Native
+Android Shared Preferences for React Native
 
 ## Installation
 
 ```bash
 npm install @connected-home/react-native-android-shared-preferences --save
+# or...
+yarn add @connected-home/react-native-android-shared-preferences
 ```
 
 ## Project setup and initialization
 
-- In `android/settings.gradle`
+- `android/settings.gradle`
 
 ```gradle
 ...
@@ -37,7 +39,6 @@ import com.hivehome.react.android.sharedpreferences.RNSharedPreferencesReactPack
 public class MainActivity extends ReactActivity {
   ...
 
-  @Override
   protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           ...
@@ -51,57 +52,59 @@ public class MainActivity extends ReactActivity {
 
 ## Usage
 
-#### Import
+### Import
 
 ```javascript
 const SharedPreferences = require("react-native-android-shared-preferences");
+// or...
+import SharedPreferences from "react-native-android-shared-preferences";
 ```
 
-#### Get an item
+### Get item
 
 ```javascript
-SharedPreferences.getItem("file", "key", function(value) {
-  console.log(value);
+SharedPreferences.getItem("file", "key", value => {
+  ...
 });
 ```
 
-#### Get multiple items
+### Get multiple items
 
 ```javascript
-SharedPreferences.getItems("file", ["key1", "key2"], function(values) {
+SharedPreferences.getItems("file", ["key1", "key2"], values => {
+  ...
+});
+```
+
+### Get keys
+
+```javascript
+SharedPreferences.keys("file", keys => {
+  ...
+});
+```
+
+### Get entries
+
+```javascript
+SharedPreferences.entries("file", entries => {
   console.log(values);
 });
 ```
 
-#### Get all keys - returns promise with array of keys
-
-```javascript
-SharedPreferences.keys("file", function(keys) {
-  console.log(keys);
-});
-```
-
-#### Get all entries = returns a promise with an array of key/value tuples
-
-```javascript
-SharedPreferences.entries("file", function(values) {
-  console.log(values);
-});
-```
-
-#### Set Item
+### Set Item
 
 ```javascript
 SharedPreferences.setItem("file", "key", "value");
 ```
 
-#### Delete Item
+### Delete Item
 
 ```javascript
 SharedPreferences.deleteItem("file", "key");
 ```
 
-#### Clear all items
+### Clear all items
 
 ```javascript
 SharedPreferences.clear("file");
