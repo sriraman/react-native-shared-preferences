@@ -2,69 +2,61 @@ package com.hivehome.react.android.sharedpreferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import java.util.Map;
 
-public class RNSharedPreferences {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+class RNSharedPreferences {
 
     private SharedPreferences sharedPreferences;
 
-    public SharedHandler(Context context, String name) {
+    RNSharedPreferences(Context context, String name) {
         sharedPreferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
-    public String getItem(String key) {
-        return sharedPreferences.getItem(key, null);
+    String getItem(String key) {
+        return sharedPreferences.getString(key, null);
     }
 
-    public String[] getItems(String[] keys) {
-        String[] results = new String[keys.length];
-        for (int i = 0; i < keys.length; i++) {
-            results[i] = getItem(keys[i]);
+    List<String> getItems(String[] keys) {
+        List<String> results = new ArrayList<>();
+        for (String key: keys) {
+            results.add(getItem(key));
         }
         return results;
     }
 
-    public String[] keys() {
-        Map<String, ?> all = sharedPreferences.getAll();
-        Set<String> keySet = all.keySet();
-        String[] keys = keySet.toArray(new String[keySet.size()]);
-        return keys;
+    Set<String> keys() {
+        return sharedPreferences.getAll().keySet();
     }
 
-    public String[][] entries() {
-        Map<String, ?> all = sharedPreferences.getAll();
-        Set<Entry<String, ?>> entrySet = all.entrySet();
-
-        String[][] entries = new String[entrySet.size()][2];
-        for (int i = 0; i < entrySet.size(); i++) {
-            entries[i][0] = entrySet[i].getKey();
-            entries[i][1] = String.valueOf(entrySet[i].getValue());
-        }
-
-        return entries;
+    Map<String, ?> entries() {
+        return sharedPreferences.getAll();
     }
 
-    public void setItem(String key, Object value) {
+    void setItem(String key, Object value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (value instanceof String) {
-            editor.putString(key, (String) value).commit();
+            editor.putString(key, (String)value);
         } else if (value instanceof Boolean) {
-            editor.putBoolean(key, (Boolean) value).commit();
+            editor.putBoolean(key, (Boolean) value);
         } else if (value instanceof Integer) {
-            editor.putInt(key, (Integer) value).commit();
+            editor.putInt(key, (Integer) value);
         } else if (value instanceof Long) {
-            editor.putLong(key, (Long) value).commit();
+            editor.putLong(key, (Long) value);
         } else if (value instanceof Float) {
-            editor.putFloat(key, (Float) value).commit();
+            editor.putFloat(key, (Float) value);
         }
+        editor.apply();
     }
 
-    public void deleteItem(String key) {
-        sharedPreferences.edit().remove(key).commit();
+    void deleteItem(String key) {
+        sharedPreferences.edit().remove(key).apply();
     }
 
-    public void clear() {
-        sharedPreferences.edit().clear().commit();
+    void clear() {
+        sharedPreferences.edit().clear().apply();
     }
-
 }

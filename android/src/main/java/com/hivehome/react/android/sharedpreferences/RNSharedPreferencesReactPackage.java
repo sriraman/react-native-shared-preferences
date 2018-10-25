@@ -1,6 +1,5 @@
 package com.hivehome.react.android.sharedpreferences;
 
-import com.hivehome.react.android.sharedpreferences.RNSharedPreferencesModule;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;

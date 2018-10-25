@@ -1,8 +1,6 @@
 package com.hivehome.react.android.sharedpreferences;
 
-import com.hivehome.react.android.sharedpreferences.RNSharedPreferences;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
@@ -10,6 +8,9 @@ import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.Callback;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
@@ -47,10 +48,11 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 			keysArray[i] = keys.getString(i);
 		}
 
-		String[][] values = getPreferenceStore(prefName).getItems(keysArray);
+		List<String> values = getPreferenceStore(prefName).getItems(keysArray);
 		WritableNativeArray data = new WritableNativeArray();
-		for (int i = 0; i < keys.size(); i++) {
-			data.pushString(values[i][1]);
+
+		for (String value: values) {
+			data.pushString(value);
 		}
 
 		successCallback.invoke(data);
@@ -58,11 +60,12 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	@ReactMethod
 	public void keys(String prefName, Callback successCallback) {
-		String[] keys = getPreferenceStore(prefName).keys();
+		Set<String> keys = getPreferenceStore(prefName).keys();
 
 		WritableNativeArray data = new WritableNativeArray();
-		for (int i = 0; i < keys.length; i++) {
-			data.pushString(keys[i]);
+
+		for (String key: keys) {
+			data.pushString(key);
 		}
 
 		successCallback.invoke(data);
@@ -70,13 +73,13 @@ public class RNSharedPreferencesModule extends ReactContextBaseJavaModule {
 
 	@ReactMethod
 	public void entries(String prefName, Callback successCallback) {
-		String[][] values = getPreferenceStore(prefName).entries();
+		Map<String, ?> values = getPreferenceStore(prefName).entries();
 
 		WritableNativeArray data = new WritableNativeArray();
-		for (int i = 0; i < values.length; i++) {
+		for (Map.Entry<String, ?> entry: values.entrySet()) {
 			WritableArray arr = new WritableNativeArray();
-			arr.pushString(values[i][0]);
-			arr.pushString(values[i][1]);
+			arr.pushString(entry.getKey());
+			arr.pushString(entry.getValue().toString());
 			data.pushArray(arr);
 		}
 
