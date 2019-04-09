@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class SharedHandler {
 
-    private static final String SHARED_NAME = "wit_player_shared_preferences";
+    private static final String SHARED_NAME = "Prokure";
 
     private SharedPreferences mSharedPreferences;
 
@@ -46,13 +46,6 @@ public class SharedHandler {
         return mSharedPreferences.getString(key, null);
     }
 
-    public Float getFloat(String key) {
-        return mSharedPreferences.getFloat(key, 0f);
-    }
-
-    public Long getLong(String key) {
-        return mSharedPreferences.getLong(key, 0);
-    }
 
     public Boolean getBoolean(String key) {
         return mSharedPreferences.getBoolean(key, false);
