@@ -22,9 +22,9 @@ public class SharedHandler {
     }
 
     public static void init(Context context) {
-	if (sSharedHandler==null) {
+        if (sSharedHandler == null) {
             sSharedHandler = new SharedHandler(context);
-	}
+        }
     }
 
     public void putExtra(String key, Object value) {
@@ -46,7 +46,6 @@ public class SharedHandler {
         return mSharedPreferences.getString(key, null);
     }
 
-
     public Boolean getBoolean(String key) {
         return mSharedPreferences.getBoolean(key, false);
     }
@@ -59,7 +58,7 @@ public class SharedHandler {
         mSharedPreferences.edit().clear().commit();
     }
 
-    public Map<String, ?> getAllSharedData(){
+    public Map<String, ?> getAllSharedData() {
         return mSharedPreferences.getAll();
     }
 
