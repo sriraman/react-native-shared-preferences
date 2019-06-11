@@ -7,24 +7,22 @@ import java.util.Map;
 
 public class SharedHandler {
 
-    private static final String SHARED_NAME = "wit_player_shared_preferences";
-
     private SharedPreferences mSharedPreferences;
 
     private static SharedHandler sSharedHandler;
 
-    public SharedHandler(Context context) {
-        mSharedPreferences = context.getSharedPreferences(SHARED_NAME, Context.MODE_PRIVATE);
+    public SharedHandler(Context context, String name) {
+        mSharedPreferences = context.getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
     public static SharedHandler getInstance() {
         return sSharedHandler;
     }
 
-    public static void init(Context context) {
-	if (sSharedHandler==null) {
-            sSharedHandler = new SharedHandler(context);
-	}
+    public static void init(Context context, String name) {
+        if (sSharedHandler == null) {
+            sSharedHandler = new SharedHandler(context, name);
+        }
     }
 
     public void putExtra(String key, Object value) {
