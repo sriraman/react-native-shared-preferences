@@ -1,17 +1,17 @@
 apply plugin: 'com.android.library'
 
-def DEFAULT_COMPILE_SDK_VERSION             = 23
-def DEFAULT_BUILD_TOOLS_VERSION             = "23.0.1"
-def DEFAULT_TARGET_SDK_VERSION              = 23
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
 
 android {
-    compileSdkVersion project.hasProperty('compileSdkVersion') ? project.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
-    buildToolsVersion project.hasProperty('buildToolsVersion') ? project.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
-
+    compileSdkVersion safeExtGet('compileSdkVersion', 23)
+    buildToolsVersion safeExtGet('buildToolsVersion', '23.0.1')
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion project.hasProperty('targetSdkVersion') ? project.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        targetSdkVersion safeExtGet('targetSdkVersion', 23)
+
         versionCode 1
         versionName "1.0"
         ndk {
@@ -21,7 +21,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:appcompat-v7:23.0.1"
-    compile "com.facebook.react:react-native:+"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:${safeExtGet('supportLibVersion', '23.0.1')}"
+    implementation "com.facebook.react:react-native:${safeExtGet('reactNativeVersion', '+')}"
 }
